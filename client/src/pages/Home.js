@@ -1,7 +1,7 @@
 import React from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn } from 'mdb-react-ui-kit';
 
-export default function Basic() {
+export default function Home() {
   return (
     <div className="vh-100" style={{ backgroundColor: '#9de2ff' }}>
       <MDBContainer>
@@ -23,9 +23,9 @@ export default function Basic() {
 
                     <div className="d-flex justify-content-start rounded-3 p-2 mb-2"
                       style={{ backgroundColor: '#efefef' }}>
-                      <i class="mx-auto fab fa-instagram fa-2x"></i>
-                      <i class="mx-auto fab fa-twitter fa-2x"></i>
-                      <i class="mx-auto fab fa-discord fa-2x"></i>
+                      <i className="mx-auto fab fa-instagram fa-2x"></i>
+                      <i className="mx-auto fab fa-twitter fa-2x"></i>
+                      <i className="mx-auto fab fa-discord fa-2x"></i>
                     </div>
                     <div className="d-flex pt-1">
                       <MDBBtn className="me-1 flex-grow-1">Connect the wallet</MDBBtn>

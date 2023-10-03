@@ -23,53 +23,53 @@ export default function UserProfile() {
 
                     <div className="d-flex justify-content-start rounded-3 p-2 mb-2"
                       style={{ backgroundColor: '#efefef' }}>
-                      <i class="mx-auto fab fa-instagram fa-2x"></i>
-                      <i class="mx-auto fab fa-twitter fa-2x"></i>
-                      <i class="mx-auto fab fa-discord fa-2x"></i>
+                      <i className="mx-auto fab fa-instagram fa-2x"></i>
+                      <i className="mx-auto fab fa-twitter fa-2x"></i>
+                      <i className="mx-auto fab fa-discord fa-2x"></i>
                     </div>
                   </div>
                 </div>
               </MDBCardBody>
             </MDBCard>
             <MDBCol md="7" lg="5" xl="4" className="justify-content-center mt-3 mx-auto">
-                <MDBCard style={{ borderRadius: '15px' }} className='p-2 text-center'>Your profile:</MDBCard>
+              <MDBCard style={{ borderRadius: '15px' }} className='p-2 text-center'>Your profile:</MDBCard>
             </MDBCol>
-<div class="row">
-  <div class="col-sm-6 p-2">
-    <div class="card ">
-      <div class="card-body text-center">
-        <h1 class="card-title">Gamer</h1>
-        <p class="card-text">A+++</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 p-2">
-    <div class="card">
-      <div class="card-body text-center">
-        <h1 class="card-title">DeFi</h1>
-        <p class="card-text">A+</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-6 p-2">
-    <div class="card">
-      <div class="card-body text-center">
-        <h1 class="card-title">Launchpad</h1>
-        <p class="card-text">B++</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 p-2">
-    <div class="card">
-      <div class="card-body text-center">
-        <h1 class="card-title">Community</h1>
-        <p class="card-text">a++</p>
-      </div>
-    </div>
-  </div>
-</div>
+            <div className="row">
+              <div className="col-sm-6 p-2">
+                <div className="card ">
+                  <div className="card-body text-center">
+                    <h1 className="card-title">Gamer</h1>
+                    <p className="card-text">A+++</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-sm-6 p-2">
+                <div className="card">
+                  <div className="card-body text-center">
+                    <h1 className="card-title">DeFi</h1>
+                    <p className="card-text">A+</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-sm-6 p-2">
+                <div className="card">
+                  <div className="card-body text-center">
+                    <h1 className="card-title">Launchpad</h1>
+                    <p className="card-text">B++</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-sm-6 p-2">
+                <div className="card">
+                  <div className="card-body text-center">
+                    <h1 className="card-title">Community</h1>
+                    <p className="card-text">a++</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </MDBCol>
         </MDBRow>
       </MDBContainer>
