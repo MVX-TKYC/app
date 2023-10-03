@@ -59,6 +59,7 @@ type RightPanelProps = {
   btnLabel: string
 }
 
+/// This name is not explicit. Feel free to change it
 const RightPanel = ({ title, subtitle, onBtnClick, btnLabel }: RightPanelProps) => {
   return <div className="flex-grow-1 ms-3">
     <MDBCardTitle>{title}</MDBCardTitle>

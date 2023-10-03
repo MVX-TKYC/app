@@ -5,7 +5,6 @@ import { createRoot } from "react-dom/client";
 import './index.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import Home from './pages/Home';
-import Unlock from './pages/Unlock';
 import { DappProvider } from '@multiversx/sdk-dapp/wrappers/DappProvider';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -19,7 +18,6 @@ root.render(
     <BrowserRouter>
       <DappProvider environment="mainnet">
         <Routes>
-          <Route path={routes.unlock} element={<Unlock />} />
           <Route path={routes.home} element={<Home />} />
 
           <Route path='*' element={<Home />} />
