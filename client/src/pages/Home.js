@@ -1,8 +1,17 @@
 import React from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn } from 'mdb-react-ui-kit';
 import { routes } from '../const';
+import { useGetAccount } from '@multiversx/sdk-dapp/hooks/account';
+import { useWebWalletLogin } from '@multiversx/sdk-dapp/hooks/login/useWebWalletLogin';
+import { logout } from '@multiversx/sdk-dapp/utils';
+import { truncateAddress } from "../utils/string"
 
 export default function Home() {
+  const [initiateLogin] = useWebWalletLogin({ callbackRoute: "/" });
+
+  const { address } = useGetAccount();
+  const isConnected = address != "";
+
   return (
     <div className="vh-100" style={{ backgroundColor: '#9de2ff' }}>
       <MDBContainer>
@@ -18,26 +27,45 @@ export default function Home() {
                       alt='Generic placeholder image'
                       fluid />
                   </div>
-                  <div className="flex-grow-1 ms-3">
-                    <MDBCardTitle>Who are you?</MDBCardTitle>
-                    <MDBCardText>Connect to discrover</MDBCardText>
 
-                    <div className="d-flex justify-content-start rounded-3 p-2 mb-2"
-                      style={{ backgroundColor: '#efefef' }}>
-                      <i className="mx-auto fab fa-instagram fa-2x"></i>
-                      <i className="mx-auto fab fa-twitter fa-2x"></i>
-                      <i className="mx-auto fab fa-discord fa-2x"></i>
-                    </div>
-                    <div className="d-flex pt-1">
-                      <MDBBtn className="me-1 flex-grow-1" href={routes.unlock}>Connect the wallet</MDBBtn>
-                    </div>
-                  </div>
+                  {isConnected ?
+                    <RightPanel
+                      title="Hey"
+                      subtitle={truncateAddress(address)}
+                      onBtnClick={logout}
+                      btnLabel={"Disconnect"} />
+                    :
+                    <RightPanel
+                      title="Who are you?"
+                      subtitle="Connect your discover"
+                      onBtnClick={initiateLogin}
+                      btnLabel={"Connect"} />
+                  }
+
+
                 </div>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
         </MDBRow>
       </MDBContainer>
-    </div>
+    </div >
   );
+}
+
+const RightPanel = ({ title, subtitle, onBtnClick, btnLabel }) => {
+  return <div className="flex-grow-1 ms-3">
+    <MDBCardTitle>{title}</MDBCardTitle>
+    <MDBCardText>{subtitle}</MDBCardText>
+
+    <div className="d-flex justify-content-start rounded-3 p-2 mb-2"
+      style={{ backgroundColor: '#efefef' }}>
+      <i className="mx-auto fab fa-instagram fa-2x"></i>
+      <i className="mx-auto fab fa-twitter fa-2x"></i>
+      <i className="mx-auto fab fa-discord fa-2x"></i>
+    </div>
+    <div className="d-flex pt-1">
+      <MDBBtn className="me-1 flex-grow-1" onClick={onBtnClick}>{btnLabel}</MDBBtn>
+    </div>
+  </div>
 }
