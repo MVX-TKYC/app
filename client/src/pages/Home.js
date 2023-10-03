@@ -1,5 +1,6 @@
 import React from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn } from 'mdb-react-ui-kit';
+import { routes } from '../const';
 
 export default function Home() {
   return (
@@ -28,7 +29,7 @@ export default function Home() {
                       <i className="mx-auto fab fa-discord fa-2x"></i>
                     </div>
                     <div className="d-flex pt-1">
-                      <MDBBtn className="me-1 flex-grow-1">Connect the wallet</MDBBtn>
+                      <MDBBtn className="me-1 flex-grow-1" href={routes.unlock}>Connect the wallet</MDBBtn>
                     </div>
                   </div>
                 </div>
