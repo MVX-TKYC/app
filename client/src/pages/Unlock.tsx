@@ -1,9 +1,9 @@
+import React from "react";
 import { WalletConnectLoginButton } from '@multiversx/sdk-dapp/UI/walletConnect/WalletConnectLoginButton/WalletConnectLoginButton';
 import { WebWalletLoginButton } from '@multiversx/sdk-dapp/UI/webWallet/WebWalletLoginButton/WebWalletLoginButton';
 import { ExtensionLoginButton } from '@multiversx/sdk-dapp/UI/extension/ExtensionLoginButton/ExtensionLoginButton';
 import { LedgerLoginButton } from '@multiversx/sdk-dapp/UI/ledger/LedgerLoginButton/LedgerLoginButton';
 import { OperaWalletLoginButton } from '@multiversx/sdk-dapp/UI/operaWallet/OperaWalletLoginButton/OperaWalletLoginButton';
-
 
 const commonProps = {
     callbackRoute: "/"

@@ -1,6 +1,5 @@
 import React from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn } from 'mdb-react-ui-kit';
-import { routes } from '../const';
 import { useGetAccount } from '@multiversx/sdk-dapp/hooks/account';
 import { useWebWalletLogin } from '@multiversx/sdk-dapp/hooks/login/useWebWalletLogin';
 import { logout } from '@multiversx/sdk-dapp/utils';
@@ -53,7 +52,14 @@ export default function Home() {
   );
 }
 
-const RightPanel = ({ title, subtitle, onBtnClick, btnLabel }) => {
+type RightPanelProps = {
+  title: string,
+  subtitle: string,
+  onBtnClick: () => void,
+  btnLabel: string
+}
+
+const RightPanel = ({ title, subtitle, onBtnClick, btnLabel }: RightPanelProps) => {
   return <div className="flex-grow-1 ms-3">
     <MDBCardTitle>{title}</MDBCardTitle>
     <MDBCardText>{subtitle}</MDBCardText>

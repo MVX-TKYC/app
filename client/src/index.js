@@ -9,7 +9,7 @@ import Unlock from './pages/Unlock';
 import { DappProvider } from '@multiversx/sdk-dapp/wrappers/DappProvider';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { routes } from './const.js'
+import { routes } from './const'
 
 const container = document.getElementById("root");
 const root = createRoot(container);
