@@ -1,4 +1,6 @@
-First install the required modules,
+# How to start the website locally?
+
+First, install the required modules,
 ```
 npm install
 ```
