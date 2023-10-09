@@ -6,9 +6,11 @@ import RestartIcon from './../images/restart.svg';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '@multiversx/sdk-dapp/utils';
 import Loading from './Loading';
+import { useGetAccount } from '@multiversx/sdk-dapp/hooks/account/useGetAccount';
 
 export default function Profile() {
     const navigate = useNavigate();
+    const { address } = useGetAccount();
 
     function fetchProfile() {
         console.warn('fetchProfile not implemented yet');
@@ -51,7 +53,7 @@ export default function Profile() {
         <div id='body-container' className='profile'>
             <div className="center-container">
                 <h1>Your porfile look nice!</h1>
-                <p className="address">erd????????????????????????????????????????????????</p>
+                <p className="address">{address}</p>
                 <div className="profile-picture"><img src="/img/tmp-layout.png" alt="Profile picture of ????????????????????????????????????????????????</" /></div>
                 <div className="unknow-container">???? ???</div>
                 <div className="datas">
