@@ -49,13 +49,14 @@
         grid-template-areas: "profile-picture title"
             "profile-picture address"
             "profile-picture datas"
-            "unknow-container datas";
+            "share-on-x datas";
+        grid-template-rows: auto auto auto 1fr;
         grid-gap: 20px 4%;
 
         @media (max-width: 800px) {
             grid-template-areas: "profile-picture title"
                 "profile-picture address"
-                "profile-picture unknow-container"
+                "profile-picture share-on-x"
                 "datas datas";
             grid-template-rows: auto 1fr auto auto;
             grid-gap: 20px;
@@ -89,13 +90,12 @@
             }
         }
 
-        .unknow-container {
-            grid-area: unknow-container;
-            @include visible-container;
-            @include text-safe;
-            text-align: center;
-            height: 100%;
-            width: 100%;
+        .share-on-x {
+            grid-area: share-on-x;
+            @include clickable-container;
+            display: block;
+            text-decoration: none;
+            margin-bottom: auto;
         }
 
         .datas {

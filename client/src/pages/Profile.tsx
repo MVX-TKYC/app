@@ -64,7 +64,7 @@ export default function Profile() {
                 <h1>Your porfile look nice!</h1>
                 <p className="address">{address}</p>
                 <div className="profile-picture"><img src="/img/tmp-layout.png" alt={"Profile picture of " + address} /></div>
-                <div className="unknow-container">???? ???</div>
+                <a className="share-on-x" href="https://twitter.com/intent/tweet" target="_blank" rel="noreferrer">Share your profile on X</a>
                 <div className="datas">
                     <div className="itheum" onClick={mintWithItheum}>
                         <span>Mint DataNFT with ITHEUM</span>

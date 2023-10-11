@@ -43,7 +43,9 @@ p + p {
 
 a {
   color: $color-text;
+}
 
+p a {
   &:hover {
     text-shadow: 0 0 4px #ffffff21;
     font-weight: 500;
