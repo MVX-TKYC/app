@@ -62,7 +62,7 @@ export default function Profile() {
             <div className="center-container">
                 <h1>Your porfile look nice!</h1>
                 <p className="address">{address}</p>
-                <div className="profile-picture"><img src="/img/tmp-layout.png" alt="Profile picture of ????????????????????????????????????????????????" /></div>
+                <div className="profile-picture"><img src="/img/tmp-layout.png" alt={"Profile picture of " + address} /></div>
                 <div className="unknow-container">???? ???</div>
                 <div className="datas">
                     <div className="itheum" onClick={mintWithItheum}>
