@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import '../styles/profile.scss';
 import { ReactSVG } from 'react-svg';
-import MintIcon from './../images/mint.svg';
+import MintIcon from './../images/itheum.svg';
 import RestartIcon from './../images/restart.svg';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '@multiversx/sdk-dapp/utils';

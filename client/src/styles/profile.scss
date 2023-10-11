@@ -20,9 +20,10 @@
     gap: 10px;
     border: 3px solid $color-background-2;
     cursor: pointer;
+    transition: border-color 0.2s ease-in-out;
 
     &:hover {
-        border: 3px solid $color-text;
+        border-color: $color-text;
     }
 
     span {}
@@ -150,8 +151,14 @@
             }
 
             .itheum {
-                @include clickable-container;
                 margin-bottom: 20px;
+                @include clickable-container;
+                border-color: #a9bfdd;
+                background: linear-gradient(135deg, #182167, #592090);
+
+                svg {
+                    height: 1.2rem;
+                }
             }
         }
     }
