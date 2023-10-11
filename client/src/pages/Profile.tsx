@@ -6,6 +6,7 @@ import RestartIcon from './../images/restart.svg';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '@multiversx/sdk-dapp/utils';
 import Loading from './Loading';
+import RadarChart from 'components/RadarChart';
 
 export default function Profile() {
     const navigate = useNavigate();
@@ -17,7 +18,14 @@ export default function Profile() {
         // TODO add api call
         return new Promise((resolve) => {
             setTimeout(() => {
-                resolve({});
+                resolve({
+                    'Gaming': 100,
+                    'Defi': 40,
+                    'NFTs': 100,
+                    'Stacking': 46,
+                    'Trading': 17,
+                    'Mining': 70,
+                }); // TODO fake data
             }, 8000);
         });
     }
@@ -50,32 +58,17 @@ export default function Profile() {
     return (
         <div id='body-container' className='profile'>
             <div className="center-container">
-                <h1>Your porfile look nice!</h1>
+                <h1>Your profile look nice!</h1>
                 <p className="address">erd????????????????????????????????????????????????</p>
                 <div className="profile-picture"><img src="/img/tmp-layout.png" alt="Profile picture of ????????????????????????????????????????????????</" /></div>
                 <div className="unknow-container">???? ???</div>
                 <div className="datas">
-                    <div className="tags">
-                        <div className="tag">
-                            <span className="title">Gaming</span>
-                            <span className="plus">++++</span>
-                        </div>
-                        <div className="tag">
-                            <span className="title">Defi</span>
-                            <span className="plus">+</span>
-                        </div>
-                        <div className="tag">
-                            <span className="title">NFTs</span>
-                            <span className="plus">++++</span>
-                        </div>
-                        <div className="tag">
-                            <span className="title">Stacking</span>
-                            <span className="plus">++</span>
-                        </div>
-                    </div>
                     <div className="itheum" onClick={mintWithItheum}>
                         <span>Mint DataNFT with ITHEUM</span>
                         <ReactSVG src={MintIcon} className='svg' />
+                    </div>
+                    <div className="radar-tags">
+                        <RadarChart profile={profile} />
                     </div>
                 </div>
             </div>
