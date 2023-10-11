@@ -70,7 +70,7 @@ export default function Profile() {
     useEffect(() => {
         fetchProfile().then((profile) => {
             setProfile(profile);
-            setProfileImage('/img/profile.png'); // TODO: add real image
+            setProfileImage('/img/tmp-layout.png'); // TODO: add real image
             setLoading(false);
         });
     }, []);
