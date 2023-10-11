@@ -67,7 +67,7 @@ export default function RadarChart({ profile }: { profile: any }) {
                 pointLabels: {
                     color: '#ffffff',
                     font: {
-                        size: 20
+                        size: (window.innerWidth < 600 ? 14 : 20) // is responsive
                     }
                 },
                 ticks: {
