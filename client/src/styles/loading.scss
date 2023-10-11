@@ -1,6 +1,7 @@
 @import 'variables.scss';
 
 #body-container.loading {
+    overflow: hidden;
     background-color: $color-background-3;
     width: 100vw;
     height: 100vh;
