@@ -27,7 +27,8 @@ export default function Home() {
     <div id='body-container' className='home'>
       <div className="center-container">
         <h1>Discover Your <span>MultiversX Profile</span></h1>
-        <p className="description">Le projet TKYC est lorem ipsum etc lalala imsup maguel michel laurent et mon sapin doré. Il fait beau e été et froid en hivers, c’est la vie you can see more about projet in <a href="#">this notion</a></p>
+        <p className="description">TKYC (Truly Know Your Customer) is a cutting-edge on-chain analysis solution leveraging artificial intelligence for wallet clustering. In other words, with just a public wallet address, we can determine the type of user it belongs.</p>
+        <p><a href="#" className="more-information">Click for more information about TKYC and all the potential of this project</a></p>
         <Button className='button' onClick={connectWallet}>Connect my wallet</Button>
       </div>
     </div>
