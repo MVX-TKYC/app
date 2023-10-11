@@ -21,12 +21,13 @@ export default function Profile() {
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve({
-                    'Gaming': 100,
-                    'Defi': 40,
-                    'NFTs': 100,
-                    'Stacking': 46,
-                    'Trading': 17,
-                    'Mining': 70,
+                    'Gaming': 40,
+                    'Defi': 30,
+                    'Launchpad': 85,
+                    'Payement': 20,
+                    'PFP-Community': 10,
+                    'DAO': 15,
+                    'Diamond Hand': 70,
                 }); // TODO fake data
             }, 8000);
         });
