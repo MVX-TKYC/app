@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { routes } from './const'
 import Profile from 'pages/Profile';
+import Footer from 'components/Footer';
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -21,6 +22,7 @@ root.render(
 
           <Route path='*' element={<Home />} />
         </Routes>
+        <Footer />
       </DappProvider>
     </BrowserRouter>
   </React.StrictMode>
