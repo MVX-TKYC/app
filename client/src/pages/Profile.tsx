@@ -80,7 +80,7 @@ export default function Profile() {
     return (
         <div id='body-container' className='profile'>
             <div className="center-container">
-                <h1>Your porfile look nice!</h1>
+                <h1>Your profile looks nice!</h1>
                 <p className="address">{address}</p>
                 <div className="profile-picture"><img src={profileImage} alt={"Profile picture of " + address} /></div>
                 <a className="share-on-x" href={generateXUrl()} target="_blank" rel="noreferrer">Share your profile on X</a>
