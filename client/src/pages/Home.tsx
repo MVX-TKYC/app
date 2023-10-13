@@ -4,11 +4,23 @@ import { useWebWalletLogin } from '@multiversx/sdk-dapp/hooks/login/useWebWallet
 import Button from 'components/Button';
 import '../styles/home.scss';
 import { useNavigate } from 'react-router-dom';
+import { NftMinter } from '@itheum/sdk-mx-data-nft';
 
 export default function Home() {
   const [initiateLogin] = useWebWalletLogin({ callbackRoute: "/" });
 
   const { address } = useGetAccount();
+  const transaction = NftMinter.mint(
+    new Address(address),
+    'TEST-TOKEN',
+    'https://marshal.com',
+    'https://streamdata.com',
+    'https://previewdata',
+    0,
+    'Test Title',
+    'Test Description',
+  );
+  
   const isConnected = address != "";
 
   const navigate = useNavigate();
