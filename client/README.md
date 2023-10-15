@@ -57,3 +57,47 @@ The `connectWallet` function calls `initiateLogin`, which initiates the web wall
 The component is exported as the default export, making it available for use in other parts of your application.
 
 This component serves as the homepage of your web application, providing information about TKYC and allowing users to connect their wallets.
+
+# Profile Component
+
+This TypeScript React component, `Profile.tsx`, represents the user's profile page in your web application.
+
+## Dependencies and Imports
+
+- **React**: The core React library.
+- **ReactSVG**: A component for rendering SVG images.
+- **Images**: Icons and images used in the component.
+- **@multiversx/sdk-dapp/utils**: The `logout` function for user logout.
+- **Loading**: A component for displaying loading state.
+- **RadarChart**: A custom component for rendering a radar chart.
+- **@multiversx/sdk-dapp/hooks/account/useGetAccount**: A hook to retrieve the user's account information.
+- **@itheum/sdk-mx-data-nft/SftMinter**: A component from 'itheum/sdk-mx-data-nft' for minting DataNFTs.
+- **Address**: A component from '@multiversx/sdk-core' for representing Ethereum addresses.
+
+## Component Functionality
+
+- The component initializes various functions and state variables.
+  - `fetchProfile`: A function (currently not implemented) to fetch the user's profile data.
+  - `getNewProfile`: A function to log the user out and return to the home page.
+  - `mintWithItheum`: A function to initiate the minting of DataNFT with Itheum.
+  - `generateXUrl`: A function to generate a URL for sharing the user's profile on social media.
+  - `profile` and `profileImage`: State variables for holding user profile data and profile image URLs.
+  - `loading`: A state variable indicating whether the component is still loading data.
+
+- The `useEffect` hook is used to fetch the user's profile data when the component mounts.
+
+- If the component is still loading, it displays a loading indicator using the `Loading` component.
+
+- Once the profile data is loaded, the component renders the following information:
+  - User profile title and Ethereum address.
+  - A profile picture, currently set to a temporary image (TODO: Replace with a real image).
+  - A button to share the profile on a social media platform.
+  - Components for minting DataNFTs with Itheum and displaying a radar chart.
+
+- A button allows users to get a new profile, which logs them out and returns to the home page.
+
+## Export
+
+The component is exported as the default export, making it available for use in other parts of your application.
+
+This component represents the user's profile page, displaying profile information and providing options to mint DataNFTs and share the profile on social media.
