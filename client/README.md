@@ -52,12 +52,6 @@ The component's main content is contained within a `div` with the ID 'body-conta
 
 The `connectWallet` function calls `initiateLogin`, which initiates the web wallet login process.
 
-## Export
-
-The component is exported as the default export, making it available for use in other parts of your application.
-
-This component serves as the homepage of your web application, providing information about TKYC and allowing users to connect their wallets.
-
 # Profile Component
 
 This TypeScript React component, `Profile.tsx`, represents the user's profile page in your web application.
@@ -96,8 +90,34 @@ This TypeScript React component, `Profile.tsx`, represents the user's profile pa
 
 - A button allows users to get a new profile, which logs them out and returns to the home page.
 
-## Export
+# Loading Component
 
-The component is exported as the default export, making it available for use in other parts of your application.
+The `Loading.tsx` file contains a TypeScript React component called `Loading`. This component is responsible for displaying a loading animation with simulated transaction data during the initial loading of a page. It is often used to provide feedback to users that the application is working on a task.
 
-This component represents the user's profile page, displaying profile information and providing options to mint DataNFTs and share the profile on social media.
+## Component Overview
+
+The `Loading` component features the following functionality:
+
+- It maintains a list of simulated transaction data items, initially empty.
+- It utilizes a `useEffect` hook to initiate a loop of adding and removing transactions at specific intervals.
+- The component's primary purpose is to provide a visual loading animation with animated transaction elements.
+
+## Simulated Transactions
+
+- The `addTransaction` function adds simulated transaction data to the list of transactions. It includes the transaction's position on the screen (x and y coordinates) and a unique identifier.
+- The `removeTransaction` function deletes a transaction from the list when the transaction is completed or removed.
+
+## Rendering
+
+The `Loading` component renders the following elements:
+
+- A central circle representing the loading progress.
+- An information text indicating that the AI is analyzing the user's profile.
+- A dynamic list of animated transaction elements, each with its unique transaction data.
+
+## Transaction Element
+
+- The `TransactionElement` component is used to render individual transaction elements. Each element represents a simulated transaction.
+- It generates a random transaction text with a "Transaction Hash."
+- The element starts an animation when it's rendered, with transitions for positioning, scaling, and opacity.
+- Upon completion of the animation, the transaction element is removed from the list.
