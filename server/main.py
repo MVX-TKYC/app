@@ -18,6 +18,5 @@ async def address(address):
     profile = calculate_profile(address, df)
 
     return {
-        "address": address,
-        "profile": profile
+        "address": address
     }

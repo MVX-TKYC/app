@@ -25,14 +25,18 @@ def flatten_json(data, parent_key='', sep='_'):
     return items
 
 def flatten_transactions(transactions):
-    df = pd.DataFrame(flatten_json(transactions))
-    
+    pd.set_option('display.max_columns', None)
+
+
+    TAGS_FILE = './files/MultiversX_-_etiquette-2.csv'
+    TOKEN_FINAL = './files/token_final.csv'
+
+    df = pd.DataFrame(flatten_json(item) for item in transactions)
+
     df=df.drop(['_source_events'],axis=1)
 
-    df1=pd.read_csv('./csv_TKYC2.csv')
-    df2=pd.read_csv('./token_final.csv')
-
-    df = pd.merge(df1, df2, left_on='_source_receiver', right_on='owner', how='left')
+    df2=pd.read_csv(TOKEN_FINAL)
+    df = pd.merge(df, df2, left_on='_source_receiver', right_on='owner', how='left')
 
     df[df['ticker'].notna()]
 
@@ -59,7 +63,6 @@ def flatten_transactions(transactions):
         if any(df[col].apply(is_list_str).fillna(False)):
             potential_list_cols.append(col)
 
-
     # Function to convert string representation of list to actual list
     def str_to_list(s):
         try:
@@ -85,12 +88,14 @@ def flatten_transactions(transactions):
         
         # Drop original column
         df = df.drop(columns=[col])
+        
+    if "_source_tokens_1" in potential_list_cols:
+        df3=pd.read_csv(TAGS_FILE,sep=';')
+        df3=df3.drop(['Catégorie - 2'],axis=1)
+        df3=df3.drop(['Unnamed: 5'],axis=1)
+        df3=df3.drop(['Unnamed: 6'],axis=1)
 
-    df3=pd.read_csv('./MultiversX_-_etiquette-2.csv',sep=';')
-    df3=df3.drop(['Catégorie - 2'],axis=1)
-    df3=df3.drop(['Unnamed: 5'],axis=1)
-    df3=df3.drop(['Unnamed: 6'],axis=1)
-    df = pd.merge(df, df3, left_on='_source_tokens_1', right_on='TICKER', how='left')
+        df = pd.merge(df, df3, left_on='_source_tokens_1', right_on='TICKER', how='left')
     
     # Drop columns with more than 99% NaN values
     nan_threshold = 0.99 * len(df)
