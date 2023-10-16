@@ -5,7 +5,9 @@
   "private": true,
   "dependencies": {
     "@itheum/sdk-mx-data-nft": "^2.1.5",
+    "@multiversx/sdk-core": "^12.11.0",
     "@multiversx/sdk-dapp": "^2.22.1",
+    "@multiversx/sdk-wallet": "^4.2.0",
     "@types/jest": "^29.5.5",
     "@types/node": "^20.8.2",
     "@types/react": "^18.2.24",
