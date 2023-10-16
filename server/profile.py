@@ -1,4 +1,4 @@
-def get_profile(address, df_cleaned):
+def calculate_profile(address, df_cleaned):
     filtered_data = df_cleaned[address['identifiant'] == address]
 
     category_percentage = (filtered_data['Catégorie - 1'].value_counts() / filtered_data.shape[0]) * 100

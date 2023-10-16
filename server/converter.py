@@ -24,7 +24,7 @@ def flatten_json(data, parent_key='', sep='_'):
             items[new_key] = v
     return items
 
-def flatten(transactions):
+def flatten_transactions(transactions):
     # 2. convert into dataframe
     # Appliquer la fonction de désimbriquation à chaque élément dans les données
     flattened_data = [flatten_json(item) for item in transactions]
