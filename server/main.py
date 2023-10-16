@@ -1,5 +1,7 @@
 from fastapi import FastAPI
-from network import getAllTransactions
+from network import get_all_transactions
+from flattx import flatten
+from profile import get_profile
 
 app = FastAPI()
 
@@ -9,15 +11,13 @@ async def root():
     return {"message": "Hello World"}
 
 @app.get("/profile/{address}")
-async def address(address):
-    # 1. get transactions
-    data = getAllTransactions(address)
+async def address(address):    
 
-    # 2. convert into dataframe
-
-    # 3. put them in model
+    transactions = get_all_transactions(address)
+    df = flatten(transactions)
+    profile = get_profile(address, df)
 
     return {
-        "message": "Hello World " + address,
-        "transactions": data
+        "address": address,
+        "profile": profile
     }

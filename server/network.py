@@ -40,7 +40,7 @@ def get_request_content_scroll(url, query):
     return all_data
 
 
-def getAllTransactions(wallet):
+def get_all_transactions(wallet):
 
     url = "https://index.multiversx.com/transactions/_search?scroll=1m&size=10000"
     query = {"query": {"bool": {"should": [{"match": {e: wallet}} for e in [
