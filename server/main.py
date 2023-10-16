@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from network import get_all_transactions
 from converter import flatten_transactions
-from profile import get_profile
+from profile import calculate_profile
 
 app = FastAPI()
 
@@ -15,7 +15,7 @@ async def address(address):
 
     transactions = get_all_transactions(address)
     df = flatten_transactions(transactions)
-    profile = get_profile(address, df)
+    profile = calculate_profile(address, df)
 
     return {
         "address": address,
