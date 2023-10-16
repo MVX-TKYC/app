@@ -1,6 +1,6 @@
-# TKYC_Model_Simple
-
 import pandas as pd
+import ast
+
 
 def flatten_json(data, parent_key='', sep='_'):
     """
@@ -25,38 +25,16 @@ def flatten_json(data, parent_key='', sep='_'):
     return items
 
 def flatten_transactions(transactions):
-    # 2. convert into dataframe
-    # Appliquer la fonction de désimbriquation à chaque élément dans les données
-    flattened_data = [flatten_json(item) for item in transactions]
-
-    # Créer un DataFrame à partir des données désimbriquées
-    df = pd.DataFrame(flattened_data)
-
-    # Afficher les premières lignes du DataFrame
-    df.head()
+    df = pd.DataFrame(flatten_json(transactions))
+    
     df=df.drop(['_source_events'],axis=1)
 
     df1=pd.read_csv('./csv_TKYC2.csv')
-
     df2=pd.read_csv('./token_final.csv')
-
-    df3=pd.read_csv('./MultiversX_-_etiquette-2.csv',sep=';')
-    df3=df3.drop(['Catégorie - 2'],axis=1)
-    df3=df3.drop(['Unnamed: 5'],axis=1)
-    df3=df3.drop(['Unnamed: 6'],axis=1)
-    df3
 
     df = pd.merge(df1, df2, left_on='_source_receiver', right_on='owner', how='left')
 
     df[df['ticker'].notna()]
-
-    # Change Multi Type in one Type
-
-    # +
-    # Step 2: Handle Varied Data Types
-
-    # Check unique data types in the '_source_value' column
-    unique_value_types = df['_source_value'].apply(type).unique()
 
     # Try to convert '_source_value' to numeric, if possible
     try:
@@ -67,20 +45,8 @@ def flatten_transactions(transactions):
         conversion_error = str(e)
 
     
-    # Check for null values after conversion
-    null_values_after_conversion = df['_source_value'].isnull().sum()
-
-    # Step 3: Handle Nested Data
-
-    # Check unique data types in the '_source_receivers' column
-    unique_receivers_types = df['_source_receivers'].apply(type).unique()
-
-    (unique_value_types, conversion_success, null_values_after_conversion, unique_receivers_types)
-
-    
     # Create column
 
-    # +
     # Identify columns that contain string representations of lists or arrays
     potential_list_cols = []
 
@@ -93,7 +59,6 @@ def flatten_transactions(transactions):
         if any(df[col].apply(is_list_str).fillna(False)):
             potential_list_cols.append(col)
 
-    import ast
 
     # Function to convert string representation of list to actual list
     def str_to_list(s):
@@ -121,21 +86,16 @@ def flatten_transactions(transactions):
         # Drop original column
         df = df.drop(columns=[col])
 
-    print(df.head())
-
+    df3=pd.read_csv('./MultiversX_-_etiquette-2.csv',sep=';')
+    df3=df3.drop(['Catégorie - 2'],axis=1)
+    df3=df3.drop(['Unnamed: 5'],axis=1)
+    df3=df3.drop(['Unnamed: 6'],axis=1)
     df = pd.merge(df, df3, left_on='_source_tokens_1', right_on='TICKER', how='left')
-
-    # Drop si plus de 99% données manquantes
-
-    # +
-    # Find columns with more than 99% NaN values
+    
+    # Drop columns with more than 99% NaN values
     nan_threshold = 0.99 * len(df)
     columns_to_drop = df.columns[df.isna().sum() > nan_threshold].tolist()
 
-    # Drop identified columns
     df_cleaned = df.drop(columns=columns_to_drop)
-
-    # Display identified columns and info of the cleaned DataFrame
-    (columns_to_drop, df_cleaned.info())    
 
     return df_cleaned
