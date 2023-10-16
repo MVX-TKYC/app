@@ -9,7 +9,9 @@ import Loading from './Loading';
 import RadarChart from 'components/RadarChart';
 import { useGetAccount } from '@multiversx/sdk-dapp/hooks/account/useGetAccount';
 import { SftMinter } from '@itheum/sdk-mx-data-nft';
-import { Address } from '@multiversx/sdk-core';
+import { Address, Transaction } from '@multiversx/sdk-core';
+import { UserSigner } from "@multiversx/sdk-wallet";
+
 
 export default function Profile() {
     const navigate = useNavigate();
@@ -44,9 +46,9 @@ export default function Profile() {
         navigate('/');
     }
 
-    function mintWithItheum() {
+    async function mintWithItheum() {
         const minter = new SftMinter("devnet")
-        minter.mint(
+        const walletObject = minter.mint(
             new Address(address),
             'DeFi',
             'https://api.itheumcloud-stg.com/datamarshalapi/router/v1',
@@ -61,6 +63,19 @@ export default function Profile() {
                 nftStorageToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEI1QjQ0MjZFMmRjOURBZUFiZjM4RjNBMDZBMzZiNTNGNzUwMTY5MTgiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY5NzM3MzA1OTk1NiwibmFtZSI6ImhhY2thdGhvbiJ9.EVtqRKYFdRbm7YLxn_FSDtKzP-PTLL2VvdWvsqsGFFE'
             }
         );
+        let signer = UserSigner.fromWallet(walletObject, "password");
+        const transaction = new Transaction({
+            gasLimit: 50000,
+            gasPrice: 0,
+            sender: new Address(address),
+            receiver: new Address(address),
+            chainID: "D",
+            version: 1
+        });
+        
+        const serializedTransaction = transaction.serializeForSigning();
+        const transactionSignature = await signer.sign(serializedTransaction);
+        transaction.applySignature(transactionSignature);
     }
 
     function generateXUrl() {
