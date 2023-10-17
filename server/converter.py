@@ -31,7 +31,8 @@ def flatten_transactions(transactions):
     TAGS_FILE = './files/MultiversX_-_etiquette-2.csv'
     TOKEN_FINAL = './files/token_final.csv'
 
-    df = pd.DataFrame(flatten_json(item) for item in transactions)
+    flattened_data = [flatten_json(item) for item in transactions]
+    df = pd.DataFrame(flattened_data)
 
     df=df.drop(['_source_events'],axis=1)
 
@@ -48,27 +49,42 @@ def flatten_transactions(transactions):
         conversion_success = False
         conversion_error = str(e)
 
-    
-    # Create column
+    df = convert_list_to_columns(df)
 
+    if "_source_tokens_1" not in df.columns:
+        raise NoTokenError()
+    
+    df3=pd.read_csv(TAGS_FILE,sep=';')
+    df3=df3.drop(['Catégorie - 2'],axis=1)
+    df3=df3.drop(['Unnamed: 5'],axis=1)
+    df3=df3.drop(['Unnamed: 6'],axis=1)
+
+    df = pd.merge(df, df3, left_on='_source_tokens_1', right_on='TICKER', how='left')
+    
+    # Drop columns with more than 99% NaN values
+    nan_threshold = 0.99 * len(df)
+    columns_to_drop = df.columns[df.isna().sum() > nan_threshold].tolist()
+
+    df_cleaned = df.drop(columns=columns_to_drop)
+
+    return df_cleaned
+
+def convert_list_to_columns(df):
     # Identify columns that contain string representations of lists or arrays
     potential_list_cols = []
 
     # Check if a string represents a list (by checking the first and last characters)
     def is_list_str(s):
-        return isinstance(s, str) and s.startswith("[") and s.endswith("]")
+        return isinstance(s, list) or (isinstance(s, str) and s.startswith("[") and s.endswith("]"))
 
-    # Check each column for potential list strings
-    for col in df.columns:
+    # Check each column for list strings
+    for col in df.columns:    
         if any(df[col].apply(is_list_str).fillna(False)):
-            potential_list_cols.append(col)
+            potential_list_cols.append(col)            
 
-    # Function to convert string representation of list to actual list
-    def str_to_list(s):
-        try:
-            return ast.literal_eval(s)
-        except (ValueError, SyntaxError):
-            return [s]
+    print("=====")
+    print(potential_list_cols)
+    print("=====")
 
     # Function to extract up to first 5 elements of a list
     def extract_up_to_5(lst):
@@ -76,9 +92,6 @@ def flatten_transactions(transactions):
 
     # Apply transformations and create new columns
     for col in potential_list_cols:
-        # Convert string lists to actual lists
-        df[col] = df[col].apply(lambda x: str_to_list(x) if pd.notna(x) else x)
-        
         # Extract up to first 5 elements
         df[col] = df[col].apply(lambda x: extract_up_to_5(x) if isinstance(x, list) else [x] + [None] * 4)
         
@@ -88,19 +101,9 @@ def flatten_transactions(transactions):
         
         # Drop original column
         df = df.drop(columns=[col])
-        
-    if "_source_tokens_1" in potential_list_cols:
-        df3=pd.read_csv(TAGS_FILE,sep=';')
-        df3=df3.drop(['Catégorie - 2'],axis=1)
-        df3=df3.drop(['Unnamed: 5'],axis=1)
-        df3=df3.drop(['Unnamed: 6'],axis=1)
 
-        df = pd.merge(df, df3, left_on='_source_tokens_1', right_on='TICKER', how='left')
-    
-    # Drop columns with more than 99% NaN values
-    nan_threshold = 0.99 * len(df)
-    columns_to_drop = df.columns[df.isna().sum() > nan_threshold].tolist()
+    return df
 
-    df_cleaned = df.drop(columns=columns_to_drop)
-
-    return df_cleaned
+class NoTokenError(Exception):
+    ...
+    pass

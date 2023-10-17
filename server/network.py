@@ -8,11 +8,15 @@ import requests
 def get_request_content(url, query):
     headers = {"Content-Type": "application/json"}
 
+    print("Querying " + url)
+
     # Send a POST request to the provided URL with the given query
     # Return the JSON content of the response
     response = requests.post(url, headers=headers, data=json.dumps(query))
 
     response.raise_for_status()
+    
+    print("Got response in " + str(response.elapsed.total_seconds()) + "s from " + url)
 
     return response.json()
 
@@ -41,7 +45,7 @@ def get_request_content_scroll(url, query):
 
 
 def get_all_transactions(wallet):
-
+    
     url = "https://index.multiversx.com/transactions/_search?scroll=1m&size=10000"
     query = {"query": {"bool": {"should": [{"match": {e: wallet}} for e in [
         "sender", "receiver", "receivers"]]}}, "sort": [{"timestamp": {"order": "desc"}}], "track_total_hits": True}
