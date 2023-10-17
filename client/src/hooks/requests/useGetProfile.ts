@@ -8,7 +8,8 @@ interface Output {
 }
 
 export default function useGetProfile(address: string): Output | undefined {
-    const { data } = useGenericAPICall<any>("http://127.0.0.1:8000/profile/" + address);
+    const url = (process.env.API_URL ?? "http://127.0.0.1:8000") + "/profile/" + address;
+    const { data } = useGenericAPICall<any>(url);
 
     if (data != undefined) {
         return data;
