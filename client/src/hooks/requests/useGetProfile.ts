@@ -1,4 +1,5 @@
 import useGenericAPICall from "./useGenericAPICall";
+import config from "dotenv"
 
 
 export type ErrorCode = 1;
