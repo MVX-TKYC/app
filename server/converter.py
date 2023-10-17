@@ -1,5 +1,4 @@
 import pandas as pd
-import ast
 
 
 def flatten_json(data, parent_key='', sep='_'):
