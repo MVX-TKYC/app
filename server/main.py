@@ -25,7 +25,7 @@ async def root():
     return {"message": "Hello World"}
 
 @app.get("/profile/{address}")
-async def address(address, response: Response ):    
+async def address(address):    
 
     transactions = get_transactions(address)
 
@@ -40,11 +40,12 @@ async def address(address, response: Response ):
         }
 
     except NoTokenError:
-        response.status_code = status.HTTP_400_BAD_REQUEST
-
         return {
             "address": address,
-            "error": "Address do not have tokens."
+            "error": {
+                "title": "Exchange more nfts to obtain a profile.",
+                "description": "This address has too few nfts transactions to establish a profile."
+            }
         }
 
 # Use cache or download transaction

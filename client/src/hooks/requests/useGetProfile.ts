@@ -1,10 +1,13 @@
 import useGenericAPICall from "./useGenericAPICall";
 
+export interface ProfileError {
+    title: string;
+    description: string;
+}
+
 interface Output {
     profile: any;
-    error: {
-        description: string;
-    }
+    error: ProfileError
 }
 
 export default function useGetProfile(address: string): Output | undefined {

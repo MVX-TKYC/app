@@ -1,4 +1,4 @@
-@import 'variables.scss';
+@import "variables.scss";
 
 @mixin visible-container {
     background-color: $color-background-1;
@@ -26,7 +26,8 @@
         border-color: $color-text;
     }
 
-    span {}
+    span {
+    }
 
     .svg {
         div {
@@ -46,7 +47,8 @@
     .center-container {
         max-width: 80%;
         display: grid;
-        grid-template-areas: "profile-picture title"
+        grid-template-areas:
+            "profile-picture title"
             "profile-picture address"
             "profile-picture datas"
             "share-on-x datas";
@@ -54,7 +56,8 @@
         grid-gap: 20px 4%;
 
         @media (max-width: 800px) {
-            grid-template-areas: "profile-picture title"
+            grid-template-areas:
+                "profile-picture title"
                 "profile-picture address"
                 "profile-picture share-on-x"
                 "datas datas";
@@ -162,7 +165,28 @@
         }
     }
 
-    .get-new {
+    .error-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        h1 {
+            text-align: center;
+        }
+
+        .description,
+        .get-new-error {
+            margin-top: 15px;
+        }
+
+        .get-new-error {
+            @include clickable-container;
+            max-width: 200px;
+        }
+    }
+
+    .get-new-fixed {
         position: fixed;
         left: 15px;
         bottom: 15px;
