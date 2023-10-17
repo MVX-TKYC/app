@@ -1,6 +1,6 @@
 pandas
 fastapi
-dotenv
+python-dotenv
 json
 requests
 uvicorn
