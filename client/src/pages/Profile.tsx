@@ -15,7 +15,7 @@ export default function Profile() {
     const navigate = useNavigate();
     const { address } = useGetAccount();
     const profile = useGetProfile(address);
-    const [profileImage, setProfileImage] = React.useState<string>('/img/tmp-layout.png');
+    const [profileImage] = React.useState<string>('/img/tmp-layout.png');
 
 
     function getNewProfile() {
