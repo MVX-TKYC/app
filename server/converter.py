@@ -82,10 +82,6 @@ def convert_list_to_columns(df):
         if any(df[col].apply(is_list_str).fillna(False)):
             potential_list_cols.append(col)            
 
-    print("=====")
-    print(potential_list_cols)
-    print("=====")
-
     # Function to extract up to first 5 elements of a list
     def extract_up_to_5(lst):
         return lst[:5] + [None] * (5 - len(lst))
