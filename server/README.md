@@ -2,7 +2,7 @@
 
 ## Overview
 
-TODO
+Due to the short duration of the hackathon, the server does not use our AI model. 
 
 ## Usage
 
