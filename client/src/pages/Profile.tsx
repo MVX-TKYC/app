@@ -5,34 +5,18 @@ import MintIcon from './../images/itheum.svg';
 import RestartIcon from './../images/restart.svg';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '@multiversx/sdk-dapp/utils';
-import Loading from './Loading';
+import Loading from '../components/Loading';
 import RadarChart from 'components/RadarChart';
 import { useGetAccount } from '@multiversx/sdk-dapp/hooks/account/useGetAccount';
+import useGetProfile from 'hooks/requests/useGetProfile';
+
 
 export default function Profile() {
     const navigate = useNavigate();
     const { address } = useGetAccount();
+    const profile = useGetProfile(address);
     const [profileImage, setProfileImage] = React.useState<string>('/img/tmp-layout.png');
 
-    function fetchProfile() {
-        console.warn('fetchProfile not implemented yet');
-        // TODO bug: fetchProfile is called twice
-        // TODO add catch
-        // TODO add api call
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve({
-                    'Gaming': 40,
-                    'Defi': 30,
-                    'Launchpad': 85,
-                    'Payement': 20,
-                    'PFP-Community': 10,
-                    'DAO': 15,
-                    'Diamond Hand': 70,
-                }); // TODO fake data
-            }, 8000);
-        });
-    }
 
     function getNewProfile() {
         // logout
@@ -63,18 +47,9 @@ export default function Profile() {
         return "https://twitter.com/intent/tweet?text=Just%20minted%20my%20Data%20NFT%20profile%20(by%20%40Itheum)%20on%20the%20MultiversX%20blockchain%20using%20%40Truly_KYC%20!%20%F0%9F%9A%80%0A%0AMy%20scores%20are%3A%0A%F0%9F%8E%AE%20Gaming%3A%20" + profile['Gaming'] + "%2F100%0A%F0%9F%92%B9%20DeFi%3A%20" + profile['Defi'] + "%2F100%0A%F0%9F%9A%80%20Launchpad%3A%20" + profile['Launchpad'] + "%2F100%0A%F0%9F%92%B3%20Payment%3A%20" + profile['Payement'] + "%2F100%0A%F0%9F%91%A5%20PFP-Community%3A%20" + profile['PFP-Community'] + "%2F100%0A%F0%9F%94%97%20DAO%3A%20" + profile['DAO'] + "%2F100%0A%F0%9F%92%8E%20Diamond%20Hand%3A%20" + profile['Diamond Hand'] + "%2F100";
     }
 
-    const [profile, setProfile] = React.useState({} as any);
-    const [loading, setLoading] = React.useState(true);
+    console.log(profile)
 
-    useEffect(() => {
-        fetchProfile().then((profile) => {
-            setProfile(profile);
-            setProfileImage('/img/tmp-layout.png'); // TODO: add real image
-            setLoading(false);
-        });
-    }, []);
-
-    if (loading) return (<Loading />);
+    if (profile == undefined) return (<Loading />);
 
     return (
         <div id='body-container' className='profile'>

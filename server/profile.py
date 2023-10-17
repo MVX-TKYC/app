@@ -1,6 +1,4 @@
-def calculate_profile(address, df_cleaned):
-    print(df_cleaned.head())
-
+def calculate_profile(df_cleaned):
     filtered_data = df_cleaned # [df_cleaned['identifiant'] == address]
     filtered_data=filtered_data[filtered_data['Catégorie - 1'].notna()]
 

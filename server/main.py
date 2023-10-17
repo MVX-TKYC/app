@@ -5,8 +5,19 @@ from profile import calculate_profile
 import os
 import json
 from dotenv import dotenv_values
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
@@ -21,7 +32,7 @@ async def address(address, response: Response ):
     try:
 
         df = flatten_transactions(transactions)
-        profile = calculate_profile(address, df)
+        profile = calculate_profile(df)
 
         return {
             "address": address,
