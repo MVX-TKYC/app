@@ -1,5 +1,6 @@
 import useGenericAPICall from "./useGenericAPICall";
 
+
 export type ErrorCode = 1;
 
 interface Output {
@@ -8,7 +9,7 @@ interface Output {
 }
 
 export default function useGetProfile(address: string): Output | undefined {
-    const url = (process.env.API_URL ?? "http://127.0.0.1:8000") + "/profile/" + address;
+    const url = (process.env.REACT_API_URL ?? "http://127.0.0.1:8000") + "/profile/" + address;
     const { data } = useGenericAPICall<any>(url);
 
     if (data != undefined) {
