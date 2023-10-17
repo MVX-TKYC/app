@@ -21,6 +21,14 @@ ChartJS.register(
 );
 
 export default function RadarChart({ profile }: { profile: any }) {
+
+    // remove low numbers
+    for (const cle in profile) {
+        if (profile[cle] < 5) {
+            delete profile[cle];
+        }
+    }
+
     const labelsFromProfile = profile ? Object.keys(profile) : [];
     const dataFromProfile = profile ? Object.values(profile) : [];
 
@@ -38,6 +46,8 @@ export default function RadarChart({ profile }: { profile: any }) {
             },
         ],
     };
+
+
 
     const options = {
         plugins: {
@@ -58,7 +68,7 @@ export default function RadarChart({ profile }: { profile: any }) {
                     display: false,
                 },
                 suggestedMin: -5,
-                suggestedMax: 100,
+                suggestedMax: getMax(profile) * 1.2,
                 grid: {
                     lineWidth: 2,
                     borderWidth: 1,
@@ -72,7 +82,7 @@ export default function RadarChart({ profile }: { profile: any }) {
                 },
                 ticks: {
                     display: false,
-                    stepSize: 1,
+                    stepSize: 0.5,
 
                 },
                 afterBuildTicks: (axis: { ticks: { value: number; }[]; }) => axis.ticks = [0, 1, 33, 67, 100].map(v => ({ value: v }))
@@ -83,4 +93,17 @@ export default function RadarChart({ profile }: { profile: any }) {
     return (
         <Radar data={data} options={options} />
     );
+}
+
+function getMax(profile: any) {
+    var biggest = -Infinity
+
+    for (const texte in profile) {
+        const entier = profile[texte];
+        if (entier > biggest) {
+            biggest = entier;
+        }
+    }
+
+    return biggest
 }
