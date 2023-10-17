@@ -3,12 +3,13 @@ import '../styles/profile.scss';
 import { ReactSVG } from 'react-svg';
 import MintIcon from './../images/itheum.svg';
 import RestartIcon from './../images/restart.svg';
+import WarningIcon from './../images/warning.svg';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { logout } from '@multiversx/sdk-dapp/utils';
 import Loading from '../components/Loading';
 import RadarChart from 'components/RadarChart';
 import { useGetAccount } from '@multiversx/sdk-dapp/hooks/account/useGetAccount';
-import useGetProfile, { ProfileError } from 'hooks/requests/useGetProfile';
+import useGetProfile, { ErrorCode } from 'hooks/requests/useGetProfile';
 
 
 function useGetAddress() {
@@ -58,9 +59,9 @@ export default function Profile() {
 
     if (profileRaw == undefined) return (<Loading />);
 
-    const { profile, error } = profileRaw;
+    const { profile, error_code } = profileRaw;
 
-    if (error != undefined) return <ErrorPage error={error} getNewProfile={getNewProfile} />
+    if (error_code != undefined) return <ErrorPage errorCode={error_code} getNewProfile={getNewProfile} />
 
 
     return <div id='body-container' className='profile'>
@@ -87,18 +88,26 @@ export default function Profile() {
     </div>
 }
 
-function ErrorPage({ error, getNewProfile }:
+function ErrorPage({ errorCode: errorCode, getNewProfile }:
     {
-        error: ProfileError,
+        errorCode: ErrorCode,
         getNewProfile: () => void
     }) {
+
+    const { description, cta } = getWording(errorCode)
+
     return <div id='body-container' className='profile'>
         <div className="center-container">
             <div className="error-container">
 
-                <h1>{error.title}</h1>
+                <ReactSVG src={WarningIcon} className='warning-icon' />
 
-                <p className='description'>{error.description}</p>
+
+                <h1>{description}</h1>
+
+                <p className='description'>
+                    {cta}
+                </p>
 
                 <div className="get-new-error mt-5" onClick={getNewProfile}>
                     <ReactSVG src={RestartIcon} className='svg' />
@@ -107,4 +116,14 @@ function ErrorPage({ error, getNewProfile }:
             </div>
         </div>
     </div>
+}
+
+function getWording(errorCode: ErrorCode) {
+    switch (errorCode) {
+        case 1:
+            return {
+                description: "This address has too few nfts transactions.",
+                cta: "Swap more NFTs to calculate your profile."
+            }
+    }
 }

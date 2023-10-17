@@ -42,10 +42,7 @@ async def address(address):
     except NoTokenError:
         return {
             "address": address,
-            "error": {
-                "title": "Exchange more nfts to obtain a profile.",
-                "description": "This address has too few nfts transactions to establish a profile."
-            }
+            "error_code": 1
         }
 
 # Use cache or download transaction
