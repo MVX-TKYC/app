@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { routes } from './const'
 import Profile from 'pages/Profile';
 import Footer from 'components/Footer';
+import WarningBanner from 'components/WarningBanner';
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -16,6 +17,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <DappProvider environment="mainnet">
+        <WarningBanner />
         <Routes>
           <Route path={routes.home} element={<Home />} />
           <Route path={routes.profile} element={<Profile />} />
