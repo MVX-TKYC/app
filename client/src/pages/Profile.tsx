@@ -8,8 +8,6 @@ import { logout } from '@multiversx/sdk-dapp/utils';
 import Loading from './Loading';
 import RadarChart from 'components/RadarChart';
 import { useGetAccount } from '@multiversx/sdk-dapp/hooks/account/useGetAccount';
-import { SftMinter } from '@itheum/sdk-mx-data-nft';
-import { Address } from '@multiversx/sdk-core';
 
 export default function Profile() {
     const navigate = useNavigate();
@@ -45,22 +43,7 @@ export default function Profile() {
     }
 
     function mintWithItheum() {
-        const minter = new SftMinter("devnet")
-        minter.mint(
-            new Address(address),
-            'DeFi',
-            'https://api.itheumcloud-stg.com/datamarshalapi/router/v1',
-            'https://api.npoint.io/3ecfc9897cf64f09401b',
-            'https://api.npoint.io/3ecfc9897cf64f09401b',
-            0,
-            1,
-            'Test Title',
-            'Test Description',
-            1,
-            {
-                nftStorageToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEI1QjQ0MjZFMmRjOURBZUFiZjM4RjNBMDZBMzZiNTNGNzUwMTY5MTgiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY5NzM3MzA1OTk1NiwibmFtZSI6ImhhY2thdGhvbiJ9.EVtqRKYFdRbm7YLxn_FSDtKzP-PTLL2VvdWvsqsGFFE'
-            }
-        );
+        alert("Not implemented yet")
     }
 
     function generateXUrl() {
