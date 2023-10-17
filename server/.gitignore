@@ -1,4 +1,2 @@
-/node_modules
-package-lock.json
-public/images/*
-uploads
+__pycache__
+.env
