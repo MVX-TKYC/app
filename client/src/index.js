@@ -16,7 +16,7 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <DappProvider environment="mainnet">
+      <DappProvider environment="devnet">
         <WarningBanner />
         <Routes>
           <Route path={routes.home} element={<Home />} />
