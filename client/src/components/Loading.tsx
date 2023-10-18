@@ -39,7 +39,7 @@ export default function Loading() {
     return (
         <div id='body-container' className='loading'>
             <div className="circle-center"></div>
-            <div className="info-text">Our AI is analyzing your profile...</div>
+            <div className="info-text">Our AI is analyzing your profile...<br />It can take up to 5 minutes</div>
             {transactions.map((transaction) => (
                 <TransactionElement
                     key={transaction.id}
