@@ -10,6 +10,10 @@ import Loading from '../components/Loading';
 import RadarChart from 'components/RadarChart';
 import { useGetAccount } from '@multiversx/sdk-dapp/hooks/account/useGetAccount';
 import useGetProfile, { ErrorCode } from 'hooks/requests/useGetProfile';
+import { SftMinter } from "@itheum/sdk-mx-data-nft";
+import { Address } from "@multiversx/sdk-core/out";
+import { refreshAccount } from "@multiversx/sdk-dapp/utils/account";
+import { sendTransactions } from "@multiversx/sdk-dapp/services";
 
 
 function useGetAddress() {
@@ -37,7 +41,39 @@ export default function Profile() {
     }
 
     function mintWithItheum() {
-        alert("Not implemented yet")
+        const minter = new SftMinter("devnet");
+        try {
+          const tx = await minter.mint(
+            new Address(address),
+            "DemoSTF",
+            "https://api.itheumcloud-stg.com/datamarshalapi/router/v1",
+            "https://raw.githubusercontent.com/Itheum/data-assets/main/Health/H1__Signs_of_Anxiety_in_American_Households_due_to_Covid19/dataset.json",
+            "https://raw.githubusercontent.com/Itheum/data-assets/main/Health/H1__Signs_of_Anxiety_in_American_Households_due_to_Covid19/preview.json",
+            10,
+            100,
+            "Support transaction flow",
+            "Flow of a mint",
+            20 * 10 ** 18, /// the anti-spam tax
+            {
+              nftStorageToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEI1QjQ0MjZFMmRjOURBZUFiZjM4RjNBMDZBMzZiNTNGNzUwMTY5MTgiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY5NzM3MzA1OTk1NiwibmFtZSI6ImhhY2thdGhvbiJ9.EVtqRKYFdRbm7YLxn_FSDtKzP-PTLL2VvdWvsqsGFFE",
+            }
+          );
+    
+          await refreshAccount();
+    
+          const { sessionId, error } = await sendTransactions({
+            transactions: tx,
+            transactionsDisplayInfo: {
+              processingMessage: "Support",
+              errorMessage: "Support error",
+              successMessage: "Support success",
+            },
+            redirectAfterSign: false,
+          });
+        } catch (error) {
+          console.log("Error");
+          console.error(error);
+        }
     }
 
     function generateXUrl() {
