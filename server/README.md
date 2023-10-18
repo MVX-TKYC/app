@@ -14,7 +14,7 @@ uvicorn main:app --reload
 
 ### Documentation
 
-When running the server, the Swagger documentation is available at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+The Swagger documentation is available at [https://tkyc-frontend-8l0q.onrender.com/docs](https://tkyc-frontend-8l0q.onrender.com/docs)
 
 ### Speeding up development
 
