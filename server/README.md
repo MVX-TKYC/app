@@ -16,6 +16,7 @@ uvicorn main:app --reload
 
 The Swagger documentation is available at [https://tkyc-frontend-8l0q.onrender.com/docs](https://tkyc-frontend-8l0q.onrender.com/docs)
 
+## Tips
 ### Speeding up development
 
 
