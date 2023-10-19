@@ -4,7 +4,9 @@
   "description": "template for mdb-react-ui-kit",
   "private": true,
   "dependencies": {
-    "@multiversx/sdk-dapp": "^2.22.1",
+    "@itheum/sdk-mx-data-nft": "^2.1.5",
+    "@multiversx/sdk-core": "12.9.0",
+    "@multiversx/sdk-dapp": "2.21.0",
     "@types/jest": "^29.5.5",
     "@types/node": "^20.8.2",
     "@types/react": "^18.2.28",
