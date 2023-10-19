@@ -37,7 +37,7 @@ export default function Profile() {
     }
 
     function mintWithItheum() {
-        alert("Not implemented yet")
+        alert("For security reasons, minting with ITHEUM is not available yet.")
     }
 
     function generateXUrl() {
