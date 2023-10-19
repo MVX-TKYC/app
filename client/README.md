@@ -1,18 +1,22 @@
+
+
 # TKYC Website 
 
 ## Where can I find the site?
 
-We currently have a [development site](https://tkyc-frontend.onrender.com/). We set it up to allow everyone to check the project without the technical knowledge to build it.
+We currently have a [development site](https://tkyc-frontend.onrender.com/). 
 
-# Development guide
-## How to start the website locally?
+## Installation
 
-First, install the required modules,
 ```
 npm install
 ```
 
-Then start the live server
+## Usage
+Start the live server with
 ```
 npm run start
 ```
+
+## Demo
+![demo](.readme_assets/profile.png)
