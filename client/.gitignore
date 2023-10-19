@@ -24,6 +24,7 @@
 !.mailmap
 !.nycrc
 !.yamllint.yaml
+!.readme_assets
 
 # === Rules for root dir ===
 /core
