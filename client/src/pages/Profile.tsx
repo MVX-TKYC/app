@@ -40,39 +40,39 @@ export default function Profile() {
         navigate('/');
     }
 
-    function mintWithItheum() {
+    async function mintWithItheum() {
         const minter = new SftMinter("devnet");
         try {
-          const tx = await minter.mint(
-            new Address(address),
-            "DemoSTF",
-            "https://api.itheumcloud-stg.com/datamarshalapi/router/v1",
-            "https://api.npoint.io/8993c525ef525595f5ee",
-            "https://api.npoint.io/8993c525ef525595f5ee",
-            10,
-            100,
-            "Support transaction flow",
-            "Flow of a mint",
-            20 * 10 ** 18, /// the anti-spam tax
-            {
-              nftStorageToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEI1QjQ0MjZFMmRjOURBZUFiZjM4RjNBMDZBMzZiNTNGNzUwMTY5MTgiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY5NzM3MzA1OTk1NiwibmFtZSI6ImhhY2thdGhvbiJ9.EVtqRKYFdRbm7YLxn_FSDtKzP-PTLL2VvdWvsqsGFFE",
-            }
-          );
-    
-          await refreshAccount();
-    
-          const { sessionId, error } = await sendTransactions({
-            transactions: tx,
-            transactionsDisplayInfo: {
-              processingMessage: "Support",
-              errorMessage: "Support error",
-              successMessage: "Support success",
-            },
-            redirectAfterSign: false,
-          });
+            const tx = await minter.mint(
+                new Address(address),
+                "DemoSTF",
+                "https://api.itheumcloud-stg.com/datamarshalapi/router/v1",
+                "https://api.npoint.io/8993c525ef525595f5ee",
+                "https://api.npoint.io/8993c525ef525595f5ee",
+                10,
+                100,
+                "Support transaction flow",
+                "Flow of a mint",
+                20 * 10 ** 18, /// the anti-spam tax
+                {
+                    nftStorageToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEI1QjQ0MjZFMmRjOURBZUFiZjM4RjNBMDZBMzZiNTNGNzUwMTY5MTgiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY5NzM3MzA1OTk1NiwibmFtZSI6ImhhY2thdGhvbiJ9.EVtqRKYFdRbm7YLxn_FSDtKzP-PTLL2VvdWvsqsGFFE",
+                }
+            );
+
+            await refreshAccount();
+
+            const { sessionId, error } = await sendTransactions({
+                transactions: tx,
+                transactionsDisplayInfo: {
+                    processingMessage: "Support",
+                    errorMessage: "Support error",
+                    successMessage: "Support success",
+                },
+                redirectAfterSign: false,
+            });
         } catch (error) {
-          console.log("Error");
-          console.error(error);
+            console.log("Error");
+            console.error(error);
         }
     }
 
